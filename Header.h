@@ -24,8 +24,8 @@ int pivot(int a[], int first, int last);
 void swap(int& a, int& b);
 void swapNoTemp(int& a, int& b);
 void print(int a[], const int& N);
-void quickInsertionSortCaller(int a[], int first, int last);
-void quickInsertionSort(int a[], int first, int last);
+void quickInsertionSortCaller(int a[], int first, int last, int k);
+void quickInsertionSort(int a[], int first, int last, int kElements);
 
 
 #endif

@@ -26,9 +26,16 @@ void quickSortCaller(int a[], int first, int last)
 {
 	quickSort(a, first, last);
 	cout << "Quick Sort -- " << endl;
+	int j = 1;
 	for (int i = 0; i < last; i++)
 	{
-
+		
+		if (a[i] == NULL && a[j] != NULL)
+		{
+			a[i] = a[j];
+			a[j] = NULL;
+		}
+		j++;
 	}
 	printOut(a);
 }
@@ -119,9 +126,16 @@ void mergeSortCaller(int a[], int low, int high)
 {
 	mergeSort(a, low, high);
 	cout << "Merge Sort -- " << endl;
+	int j = 1;
 	for (int i = 0; i < high; i++)
 	{
 
+		if (a[i] == NULL && a[j] != NULL)
+		{
+			a[i] = a[j];
+			a[j] = NULL;
+		}
+		j++;
 	}
 	printOut(a);
 }
@@ -178,6 +192,37 @@ void merge(int a[], int low, int high, int mid)
 	}
 }
 
+void quickInsertionSortCaller(int a[], int first, int last, int k)
+{
+	cout << "Quick Insertion Sort -- " << endl;
+	int j = 1;
+	for (int i = 0; i < last; i++)
+	{
+
+		if (a[i] == NULL && a[j] != NULL)
+		{
+			a[i] = a[j];
+			a[j] = NULL;
+		}
+		j++;
+	}
+	insertionSort(a, last);
+}
+void quickInsertionSort(int a[], int first, int last,int kElement )
+{
+	int pivotElement;
+	int subArraySize = last - first;
+	if (first < last && subArraySize > kElement)
+	{
+		pivotElement = pivot(a, first, last);
+		quickSort(a, first, pivotElement - 1);
+		quickSort(a, pivotElement + 1, last);
+	}
+	else
+	{
+		return;
+	}
+}
 
 #endif
  
