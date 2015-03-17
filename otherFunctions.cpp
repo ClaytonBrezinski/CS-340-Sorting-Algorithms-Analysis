@@ -35,7 +35,7 @@ void printOut(int numberArray[MAX_ARRAY_SIZE])
 	{
 		cout << numberArray[i] << " ";
 	}
-	cout << endl;
+	cout << endl << endl;
 }
 
 #endif

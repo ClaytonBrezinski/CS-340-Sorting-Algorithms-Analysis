@@ -39,7 +39,7 @@ int main()
 
 	// reset the tempSortArray and use quick-insertion sort
 	copyArray(primaryNumberArray, tempSortArray);
-	quickInsertionSortCaller(tempSortArray, 0, arraySize);
+	quickInsertionSortCaller(tempSortArray, 0, arraySize, k);
 
 	nullArray(primaryNumberArray);
 	char temp;
