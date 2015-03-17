@@ -5,8 +5,9 @@
 void insertionSort(int arr[], int length)
 {
 	cout << "Insertion Sort -- " << endl;
+	//
+	auto t1 = std::chrono::high_resolution_clock::now();
 	int j, temp;
-
 	for (int i = 0; i < length; i++)// may have to change i=#
 	{
 		j = i;
@@ -19,17 +20,29 @@ void insertionSort(int arr[], int length)
 			j--;
 		}
 	}
+	//
+	auto t2 = std::chrono::high_resolution_clock::now();
+	std::cout << "f() took " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << " milliseconds\n";
+
 	printOut(arr);
 }
 
+
 void quickSortCaller(int a[], int first, int last)
 {
-	quickSort(a, first, last);
 	cout << "Quick Sort -- " << endl;
+	clock_t start = clock();
+
+	quickSort(a, first, last);
+
+	clock_t end = clock();
+	double time = (double)(end - start) / CLOCKS_PER_SEC * 1000.0;
+	cout << "the time to complete this algorithm was : " << time << endl;
+
+	// prep array for print out then print
 	int j = 1;
 	for (int i = 0; i < last; i++)
 	{
-		
 		if (a[i] == NULL && a[j] != NULL)
 		{
 			a[i] = a[j];
@@ -124,8 +137,16 @@ void print(int a[], const int& N)
 
 void mergeSortCaller(int a[], int low, int high)
 {
-	mergeSort(a, low, high);
 	cout << "Merge Sort -- " << endl;
+	clock_t start = clock();
+
+	mergeSort(a, low, high);
+	
+	clock_t end = clock();
+	double time = (double)(end - start) / CLOCKS_PER_SEC * 1000.0;
+	cout << "the time to complete this algorithm was : " << time << endl;
+
+	// prep array for print then print
 	int j = 1;
 	for (int i = 0; i < high; i++)
 	{
@@ -195,6 +216,11 @@ void merge(int a[], int low, int high, int mid)
 void quickInsertionSortCaller(int a[], int first, int last, int k)
 {
 	cout << "Quick Insertion Sort -- " << endl;
+	clock_t start = clock();
+
+	quickInsertionSort(a, first, last, k);
+
+	// prep array for insertion sort
 	int j = 1;
 	for (int i = 0; i < last; i++)
 	{
@@ -206,7 +232,13 @@ void quickInsertionSortCaller(int a[], int first, int last, int k)
 		}
 		j++;
 	}
-	insertionSort(a, last);
+	insertionSortForQuick(a, last);
+
+	clock_t end = clock();
+	double time = (double)(end - start) / CLOCKS_PER_SEC * 1000.0;
+	cout << "the time to complete this algorithm was : " << time << endl;
+	printOut(a);
+
 }
 void quickInsertionSort(int a[], int first, int last,int kElement )
 {
@@ -223,6 +255,21 @@ void quickInsertionSort(int a[], int first, int last,int kElement )
 		return;
 	}
 }
+void insertionSortForQuick(int arr[], int length)
+{
+	int j, temp;
+	for (int i = 0; i < length; i++)
+	{
+		j = i;
 
+		while (j > 0 && arr[j] < arr[j - 1])
+		{
+			temp = arr[j];
+			arr[j] = arr[j - 1];
+			arr[j - 1] = temp;
+			j--;
+		}
+	}
+}
 #endif
  

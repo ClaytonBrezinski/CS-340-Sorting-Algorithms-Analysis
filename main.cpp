@@ -11,9 +11,9 @@ int main()
 	int arraySize = -5;
 	int k;
 
-	while (arraySize >= MAX_ARRAY_SIZE || arraySize <= 0)
+	while (arraySize >= MAX_ARRAY_SIZE || arraySize < 0)
 	{
-		cout << "The max amount of numbers you can use is " << MAX_ARRAY_SIZE << " Please enter how many numbers you will be using:" << endl;
+		cout << "The max amount of numbers you can use is " << MAX_ARRAY_SIZE - 1 << " Please enter how many numbers you will be using:" << endl;
 		cin >> arraySize;
 	}
 	cout << "Please enter the k value for quick-insertion" << endl;
