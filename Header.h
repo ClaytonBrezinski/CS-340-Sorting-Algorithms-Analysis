@@ -1,6 +1,15 @@
+
+/*
+student name : Clayton Brezinski
+student # : 200220989
+assignment number : Assignment 3
+date written : March 17th, 2015
+*/
+
+
 #ifndef HEADER_H
 #define HEADER_H
- 
+
 #include <iostream>
 #include <ctime>
 #include <stdlib.h>
@@ -9,7 +18,8 @@
 using namespace std;
 
 /*-------VARIABLES THE USER CAN ALTER-------*/
-const int MAX_ARRAY_SIZE = 200; // will be one smaller 
+const int MAX_ARRAY_SIZE = 15000; // will be one smaller 
+const int MODNUMBER = 10000; // denotes what the highest possible number generated can be
 /*------------------------------------------*/
 
 

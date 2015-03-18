@@ -1,3 +1,11 @@
+/*
+student name : Clayton Brezinski
+student # : 200220989
+assignment number : Assignment 3
+date written : March 17th, 2015
+*/
+
+
 #ifndef MAIN_CPP
 #define MAIN_CPP 
 
@@ -11,6 +19,7 @@ int main()
 	int arraySize = -5;
 	int k;
 
+	/* User input Section - User enters size of array and k value for quick insertion*/
 	while (arraySize >= MAX_ARRAY_SIZE || arraySize < 0)
 	{
 		cout << "The max amount of numbers you can use is " << MAX_ARRAY_SIZE - 1 << " Please enter how many numbers you will be using:" << endl;
@@ -23,7 +32,7 @@ int main()
 
 	// Create the array of random numbers and print the array out to show that it is randomn
 	generateRandomNumbers(primaryNumberArray, arraySize);
-	printOut(primaryNumberArray);
+	// printOut(primaryNumberArray);
 
 	// make the tempSortArray the same as the primaryNumberArray, then sort the temp array using insertion sort
 	copyArray(primaryNumberArray, tempSortArray);
@@ -41,7 +50,8 @@ int main()
 	copyArray(primaryNumberArray, tempSortArray);
 	quickInsertionSortCaller(tempSortArray, 0, arraySize, k);
 
-	nullArray(primaryNumberArray);
+	//nullify the array and exit 
+	nullArray(primaryNumberArray);	
 	char temp;
 	cout << endl << "please press any key to continue ... " << endl;
 	cin >> temp;
