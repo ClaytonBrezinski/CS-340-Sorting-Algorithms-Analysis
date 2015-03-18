@@ -1,12 +1,22 @@
+/*
+student name : Clayton Brezinski
+student # : 200220989
+assignment number : Assignment 3
+date written : March 17th, 2015
+*/
+
+
 #ifndef SORTINGFUNCTIONS_CPP
 #define SORTINGFUNCTIONS_CPP
 #include "Header.h"
 
+/*Insertion Sort function*/
 void insertionSort(int arr[], int length)
 {
 	cout << "Insertion Sort -- " << endl;
+	//
+	clock_t start = clock();	// begin timer
 	int j, temp;
-
 	for (int i = 0; i < length; i++)// may have to change i=#
 	{
 		j = i;
@@ -19,17 +29,30 @@ void insertionSort(int arr[], int length)
 			j--;
 		}
 	}
-	printOut(arr);
+
+	clock_t timeElapsed = clock() - start;
+	unsigned msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
+	cout << "the time to complete this algorithm was : " << msElapsed << "ms "<< endl;
+
+	// printOut(arr);
 }
 
+/*Quick Sort functions*/
 void quickSortCaller(int a[], int first, int last)
 {
-	quickSort(a, first, last);
 	cout << "Quick Sort -- " << endl;
+	clock_t start = clock();	// begin timer
+
+	quickSort(a, first, last);
+
+	clock_t timeElapsed = clock() - start;
+	unsigned msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
+	cout << "the time to complete this algorithm was : " << msElapsed << "ms " << endl;
+
+	// prep array for print out then print
 	int j = 1;
 	for (int i = 0; i < last; i++)
 	{
-		
 		if (a[i] == NULL && a[j] != NULL)
 		{
 			a[i] = a[j];
@@ -37,14 +60,8 @@ void quickSortCaller(int a[], int first, int last)
 		}
 		j++;
 	}
-	printOut(a);
+	// printOut(a);
 }
-/**
-* Quicksort.
-* @param a - The array to be sorted.
-* @param first - The start of the sequence to be sorted.
-* @param last - The end of the sequence to be sorted.
-*/
 void quickSort(int a[], int first, int last)
 {
 	int pivotElement;
@@ -56,14 +73,6 @@ void quickSort(int a[], int first, int last)
 		quickSort(a, pivotElement + 1, last);
 	}
 }
-
-/**
-* Find and return the index of pivot element.
-* @param a - The array.
-* @param first - The start of the sequence.
-* @param last - The end of the sequence.
-* @return - the pivot element
-*/
 int pivot(int a[], int first, int last)
 {
 	int  p = first;
@@ -83,49 +92,37 @@ int pivot(int a[], int first, int last)
 
 	return p;
 }
-
-
-/**
-* Swap the parameters.
-* @param a - The first parameter.
-* @param b - The second parameter.
-*/
 void swap(int& a, int& b)
 {
 	int temp = a;
 	a = b;
 	b = temp;
 }
-
-/**
-* Swap the parameters without a temp variable.
-* Warning! Prone to overflow/underflow.
-* @param a - The first parameter.
-* @param b - The second parameter.
-*/
 void swapNoTemp(int& a, int& b)
 {
 	a -= b;
 	b += a;// b gets the original value of a
 	a = (b - a);// a gets the original value of b
 }
-
-/**
-* Print an array.
-* @param a - The array.
-* @param N - The size of the array.
-*/
 void print(int a[], const int& N)
 {
 	for (int i = 0; i < N; i++)
 		cout << "array[" << i << "] = " << a[i] << endl;
 }
 
-
+/* Merge Sort functions*/
 void mergeSortCaller(int a[], int low, int high)
 {
-	mergeSort(a, low, high);
 	cout << "Merge Sort -- " << endl;
+	clock_t start = clock();	// begin timer
+
+	mergeSort(a, low, high);
+	
+	clock_t timeElapsed = clock() - start;
+	unsigned msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
+	cout << "the time to complete this algorithm was : " << msElapsed << "ms " << endl;
+
+	// prep array for print then print
 	int j = 1;
 	for (int i = 0; i < high; i++)
 	{
@@ -137,10 +134,9 @@ void mergeSortCaller(int a[], int low, int high)
 		}
 		j++;
 	}
-	printOut(a);
+	// printOut(a);
 }
-void merge(int a[], int, int, int);
-
+void merge(int *a, int low, int high, int mid);
 void mergeSort(int a[], int low, int high)
 {
 	int mid;
@@ -155,7 +151,7 @@ void mergeSort(int a[], int low, int high)
 }
 void merge(int a[], int low, int high, int mid)
 {
-	int i, j, k, c[50];
+	int i, j, k, c[MAX_ARRAY_SIZE];
 	i = low;
 	k = low;
 	j = mid + 1;
@@ -192,9 +188,15 @@ void merge(int a[], int low, int high, int mid)
 	}
 }
 
+/*Quick Insertion Sort functions*/
 void quickInsertionSortCaller(int a[], int first, int last, int k)
 {
 	cout << "Quick Insertion Sort -- " << endl;
+	clock_t start = clock();		// begin timer
+
+	quickInsertionSort(a, first, last, k);
+
+	// prep array for insertion sort (included in timing due to it being necessary to pass to insertion sort
 	int j = 1;
 	for (int i = 0; i < last; i++)
 	{
@@ -206,7 +208,13 @@ void quickInsertionSortCaller(int a[], int first, int last, int k)
 		}
 		j++;
 	}
-	insertionSort(a, last);
+	insertionSortForQuick(a, last);
+
+	clock_t timeElapsed = clock() - start;
+	unsigned msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
+	cout << "the time to complete this algorithm was : " << msElapsed << "ms " << endl;
+	// printOut(a);
+
 }
 void quickInsertionSort(int a[], int first, int last,int kElement )
 {
@@ -215,14 +223,29 @@ void quickInsertionSort(int a[], int first, int last,int kElement )
 	if (first < last && subArraySize > kElement)
 	{
 		pivotElement = pivot(a, first, last);
-		quickSort(a, first, pivotElement - 1);
-		quickSort(a, pivotElement + 1, last);
+		quickInsertionSort(a, first, pivotElement - 1, kElement);
+		quickInsertionSort(a, pivotElement + 1, last, kElement);
 	}
 	else
 	{
 		return;
 	}
 }
+void insertionSortForQuick(int arr[], int length)
+{
+	int j, temp;
+	for (int i = 0; i < length; i++)
+	{
+		j = i;
 
+		while (j > 0 && arr[j] < arr[j - 1])
+		{
+			temp = arr[j];
+			arr[j] = arr[j - 1];
+			arr[j - 1] = temp;
+			j--;
+		}
+	}
+}
 #endif
  
